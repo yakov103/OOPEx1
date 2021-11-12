@@ -11,7 +11,7 @@ class Elevator:
         self._startTime = float(id["_startTime"])
         self._stopTime = float(id["_stopTime"])
         self._direction = 0
-        self._position  = 0
+        self._position  = 0.0
 
 
     def getState(self) -> int:

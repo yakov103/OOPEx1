@@ -3,7 +3,7 @@ from callForElevator import CallForElevator
 from utils import calculateFloorPassCost
 
 import heapq
-
+import queue
 
 class ElevatorController:
 
@@ -28,9 +28,18 @@ class ElevatorController:
             heapq.heappush(self.callsUp,c.src)
             heapq.heappush(self.callsUp,c.dest)
         else:
-            heapq._heappush_max(self.callsUp,c.src)
-            heapq._heappush_max(self.callsUp, c.dest)
+            heapq.heappush(self.callsDown,c.src)
+            heapq.heappush(self.callsDown,c.dest)
+            heapq._heapify_max(self.callsDown)
 
 
+    def navigateElevator(self,curr:Elevator):
+        if (curr.getState() == 0 ):
+            if (self._direction == 1):
+                if(len(self.callsUp) != 0 ):
+                pass
 
+            if (self._direction == -1):
+            pass
 
+        pass
