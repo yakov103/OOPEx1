@@ -3,13 +3,17 @@ import csvwriter as csvwriter
 from building import Building
 from callForElevator import CallForElevator
 
+
+
+
+
 def readCalls(file_name:str,b:Building):
     callsList = []
     with open(file_name) as f:
         data = csv.reader(f)
         for i in data:
-            if(buildingSuitableCalls(b,i[2],i[3])):
-                callsList.append(CallForElevator(i))
+           # if(buildingSuitableCalls(b,i[2],i[3])):
+            callsList.append(CallForElevator(i,i))
 
     return callsList
 
@@ -28,3 +32,11 @@ def  buildingSuitableCalls (b : Building,src:int,dest:int )->bool:
     flag1 = src >= b._minFloor and src <= b._maxFloor
     flag2 = dest >= b._minFloor and dest <= b._maxFloor
     return flag1 and flag2
+
+
+if __name__ == '__main__':
+
+    b = Building("B5.json")
+    calls = readCalls("Calls_b.csv",b)
+    b.runAlgo(calls)
+    writeAns(calls)
