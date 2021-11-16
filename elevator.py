@@ -37,7 +37,7 @@ class Elevator:
         return self._id < other._id
 
     def updatePos (self, posElev:float , posTime :float):
-        self._position=posTime
+        self._position=posElev
         self._timePostion = posTime
 
 

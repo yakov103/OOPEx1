@@ -4,16 +4,15 @@ from building import Building
 from callForElevator import CallForElevator
 
 
-
-
-
 def readCalls(file_name:str,b:Building):
     callsList = []
     with open(file_name) as f:
         data = csv.reader(f)
+        j =0
         for i in data:
            # if(buildingSuitableCalls(b,i[2],i[3])):
-            callsList.append(CallForElevator(i,i))
+            callsList.append(CallForElevator(i,j))
+            j = j + 1
 
     return callsList
 
@@ -37,6 +36,6 @@ def  buildingSuitableCalls (b : Building,src:int,dest:int )->bool:
 if __name__ == '__main__':
 
     b = Building("B5.json")
-    calls = readCalls("Calls_b.csv",b)
+    calls = readCalls("Calls_d.csv",b)
     b.runAlgo(calls)
     writeAns(calls)

@@ -1,6 +1,6 @@
 
 class CallForElevator:
-    def __init__(self, call, id):
+    def __init__(self, call, id:int):
         self.name = call[0]
         self.time = float(call[1])
         self.src = int(call[2])
@@ -13,3 +13,4 @@ class CallForElevator:
 
     def pushOrder (self, elev:int ):
         self.elevator = elev
+
