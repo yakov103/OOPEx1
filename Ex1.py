@@ -3,6 +3,7 @@ import csvwriter as csvwriter
 from building import Building
 from callForElevator import CallForElevator
 from elevatorController import  ElevatorController
+import sys
 
 
 def readCalls(file_name:str,b:Building):
@@ -18,11 +19,11 @@ def readCalls(file_name:str,b:Building):
     return callsList
 
 
-def writeAns(ansCalls:dict):
+def writeAns(ansCalls:dict, file_name:str):
     anslist =[]
     for i in ansCalls:
         anslist.append(i.__dict__.values())
-    with open("output.csv", 'w', newline="") as f:
+    with open(file_name, 'w', newline="") as f:
         csvwriter = csv.writer(f)
         csvwriter.writerows(anslist)
 
@@ -36,8 +37,8 @@ def  buildingSuitableCalls (b : Building,src:int,dest:int )->bool:
 
 if __name__ == '__main__':
 
-    b = Building("B5.json")
-    calls = readCalls("Calls_d.csv",b)
+    b = Building(sys.argv[1])
+    calls = readCalls(sys.argv[2],b)
     controller = ElevatorController(calls,b)
     controller.runAlgo()
-    writeAns(controller._calls)
+    writeAns(controller._calls,sys.argv[3])
