@@ -1,6 +1,12 @@
+import math
 from callForElevator import CallForElevator
 
 class Elevator:
+
+    UP = 1
+    LEVEL = 0
+    DOWN = 0
+
     def __init__(self, id):
         self._id = int(id["_id"])
         self._speed = float(id["_speed"])
@@ -10,14 +16,22 @@ class Elevator:
         self._openTime = float(id["_openTime"])
         self._startTime = float(id["_startTime"])
         self._stopTime = float(id["_stopTime"])
-        self._direction = 0
-        self._position  = 0.0
-        self._timePostion = 0.0
-        self._callsUp = []
-        self._callsDown = []
+        self._direction = Elevator.LEVEL
+        self._position = 0
+        self._leftTimer = 0.0
+        self._finishTime = 0.0
+        self._a= None
+        self._b= None
 
     def costStop(self):
         return self._openTime + self._stopTime + self._startTime +self._closeTime
+
+    def getID(self):
+        return self._id
+
+    def addStop(self):
+        self._leftTimer += self.costStop()
+        self._finishTime += self.costStop()
 
     def getState(self) -> int:
         return self._direction
@@ -27,6 +41,31 @@ class Elevator:
 
     def getPos(self)-> int:
         return self._position
+
+    def setOrder (self, c:CallForElevator):
+        self._a = c.src
+        self._b = c.dest
+        self._leftTimer += self.calculateFloor(self.getPos(), c.src) + self.calculateFloor(c.src, c.dest)
+        self._finishTime = self._leftTimer + c.time
+        if c._direction == Elevator.UP:
+            self._direction = Elevator.UP
+        else:
+            self._direction = Elevator.DOWN
+
+
+
+    def calculateFloor (self, startPoint:int , finishPoint:int):
+        timeToMove = self._openTime + self._closeTime+ self._startTime + self._stopTime
+        floorPassed = abs (startPoint - finishPoint)
+        return timeToMove + floorPassed
+
+    def resetElev (self):
+        self._a = None
+        self._b = None
+        self._position = 0
+        self._leftTimer = 0.0
+        self._direction = Elevator.LEVEL
+
 
     def __eq__(self, other):
         if isinstance(other, Elevator):

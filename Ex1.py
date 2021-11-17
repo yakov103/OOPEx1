@@ -2,6 +2,7 @@ import csv
 import csvwriter as csvwriter
 from building import Building
 from callForElevator import CallForElevator
+from elevatorController import  ElevatorController
 
 
 def readCalls(file_name:str,b:Building):
@@ -37,5 +38,6 @@ if __name__ == '__main__':
 
     b = Building("B5.json")
     calls = readCalls("Calls_d.csv",b)
-    b.runAlgo(calls)
-    writeAns(calls)
+    controller = ElevatorController(calls,b)
+    controller.runAlgo()
+    writeAns(controller._calls)
