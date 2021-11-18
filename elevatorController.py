@@ -42,16 +42,6 @@ class ElevatorController:
                 best = cost
                 bestElev = elev
         bestElev.setOrder(c)
-
-        for i in range(c.id+1,len(self._calls)):
-            next= self._calls[i]
-            print(f"next time {next.time} best  {bestElev._finishTime}")
-            if next.time < bestElev._finishTime:
-                break
-            calculateNext = bestElev.calculateFloor(bestElev.getPos(), c.src) +  bestElev.calculateFloor(c.src , next.src)
-            if calculateNext < next.time:
-                bestElev.addStop()
-                next.elevator = bestElev._id
         bestElev._b = c.dest
         return bestElev
 

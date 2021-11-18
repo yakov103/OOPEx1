@@ -57,7 +57,7 @@ class Elevator:
     def calculateFloor (self, startPoint:int , finishPoint:int):
         timeToMove = self._openTime + self._closeTime+ self._startTime + self._stopTime
         floorPassed = abs (startPoint - finishPoint)
-        return timeToMove + floorPassed
+        return timeToMove + floorPassed/self.getSpeed()
 
     def resetElev (self):
         self._a = None

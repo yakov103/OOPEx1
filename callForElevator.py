@@ -11,7 +11,6 @@ class CallForElevator:
         self.dest = int(call[3])
         self.state =int(call[4])
         self.elevator = int(call[5])
-        self._isDone = False
         self.id = id
         if self.src < self.dest:
             self._direction = CallForElevator.UP
