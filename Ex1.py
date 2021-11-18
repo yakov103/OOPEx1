@@ -12,7 +12,6 @@ def readCalls(file_name:str,b:Building):
         data = csv.reader(f)
         j =0
         for i in data:
-           # if(buildingSuitableCalls(b,i[2],i[3])):
             callsList.append(CallForElevator(i,j))
             j = j + 1
 
@@ -26,13 +25,6 @@ def writeAns(ansCalls:dict, file_name:str):
     with open(file_name, 'w', newline="") as f:
         csvwriter = csv.writer(f)
         csvwriter.writerows(anslist)
-
-
-
-def  buildingSuitableCalls (b : Building,src:int,dest:int )->bool:
-    flag1 = src >= b._minFloor and src <= b._maxFloor
-    flag2 = dest >= b._minFloor and dest <= b._maxFloor
-    return flag1 and flag2
 
 
 if __name__ == '__main__':
