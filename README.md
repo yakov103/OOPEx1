@@ -67,3 +67,11 @@ The algorithm is greedy but it calculates very accurately the cost of travel, so
 
 ![App Screenshot](https://i.ibb.co/M7LnR6N/UML.png)
 
+ ## Bibliography
+
+We used the links below to understand the problem in depth and formulate an algorithm that will lead to optimal performance.
+ - [ETD Algorithm with Destination Dispatch and Booster Options](https://peters-research.com/index.php/papers/etd-algorithm-with-destination-dispatch-and -booster-options/)
+ - [A Heuristic for the Situational Application of a Destination Dispatch Elevator System](https://github.com/do-ryan/destination-dispatch-elevator-simulation/blob/master/A%20Heu ristic%20for%20the%20Situational%20Application%20of%20a%20Destination%20Dispat ch%20Elevator%20System.pdf)
+ - [Elevator selection with destination control system](https://global.ctbuh.org/resources/papers/download/1050-elevator-selection-with-d
+estination-control-system.pdf)
+
